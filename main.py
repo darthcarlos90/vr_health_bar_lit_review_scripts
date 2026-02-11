@@ -1,18 +1,21 @@
 from file_manager import get_files_in_folder
 from bib_manager import extract_from_bib
-from csv_manager import extract_from_csv
-from ranking import rank_entries
+from csv_manager import *
+from ranking import rank_entries, assign_reviewers
 
 
 FOLDER_PATH = "C:\\Users\\ctir0789\\Documents\\Dev\\datasets\\hci_lit_rev\\"
 KEYWORDS = [
-    "VR", "Virtual Reality", "HMD", "Head-Mounted Display", "Head Mounted Display",
     "Physiological", "Wearable", "IMU", "heart-rate monitor", "HRV", "Cybersickness",
     "Motion Sickness", "Postural Instability", "Congnitive Load", "Working Memory", "Eye Tracker",
     "EEG", "Heart rate monitor", "BCI", "brain-computer interface", "motion tracker", "HRV", "Skin Conductance",
     "pupil dilatation", "attention", "position", "wearable sensor", "sensor", "wearable device", "electroencephalogra",
-    "heart", "HCI", "human-computer"
+    "heart", "gaze", "neuro", "fatigue", "discomfort"
 ]
+SECONDARY_KEYWORDS = [
+    "human-computer", "VR", "Virtual Reality", "HCI", "Immersive", "HMD", "Head-Mounted Display", "Head Mounted Display"
+]
+
 
 
 
@@ -34,9 +37,14 @@ def main():
         database.extend(data)
     
     print(f"\nExtracted {len(database)} entries:")
-    rank_entries(database, KEYWORDS)
-    for item in database:
-        print(item)
+    rank_entries(database, KEYWORDS, SECONDARY_KEYWORDS)
+    assign_reviewers(database)
+    
+    export_to_csv(database)
+    
+    print()
+    #for item in database:
+    #    print(item)
 
 
 

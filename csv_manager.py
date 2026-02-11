@@ -29,3 +29,19 @@ def extract_from_csv(file_path):
         print(f"Error reading CSV {file_path}: {e}")
     
     return extracted_data
+
+
+
+
+def export_to_csv(all_data):
+    filename = "database.csv"
+    
+    keys = all_data[0].keys()
+    
+    with open(filename, "w", newline='', encoding='utf-8') as output_file:
+        dict_writer = csv.DictWriter(output_file, fieldnames=keys)
+        dict_writer.writeheader()
+        
+        dict_writer.writerows(all_data)
+        
+    print("Finished")

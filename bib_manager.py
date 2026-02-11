@@ -80,16 +80,24 @@ def extract_from_bib(file_path):
         entries = [e for e in content.split('@') if e.strip()]
         
         for entry in entries:
+            entry = entry.replace('\n', ' ')
+            entry = entry.replace(' = ', '=')
             # Extract title (paper title)
             title = parse_bib_field(entry, 'title')
             
             # Extract booktitle (conference/journal name)
             outlet = parse_bib_field(entry, 'booktitle')
+            if not outlet or outlet.strip() == '':
+                outlet = parse_bib_field(entry, 'journal')
             
             # Try both 'author' and 'authors'
             authors = parse_bib_field(entry, 'author')
             if not authors:
                 authors = parse_bib_field(entry, 'authors')
+            
+            # Skip this entry if authors is empty
+            if not authors or authors.strip() == '':
+                continue
             
             year = parse_bib_field(entry, 'year')
             keywords = parse_bib_field(entry, 'keywords')
