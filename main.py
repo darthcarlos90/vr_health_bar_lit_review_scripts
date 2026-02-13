@@ -7,7 +7,7 @@ from ranking import rank_entries, assign_reviewers
 FOLDER_PATH = "C:\\Users\\ctir0789\\Documents\\Dev\\datasets\\hci_lit_rev\\"
 KEYWORDS = [
     "Physiological", "Wearable", "IMU", "heart-rate monitor", "HRV", "Cybersickness",
-    "Motion Sickness", "Postural Instability", "Congnitive Load", "Working Memory", "Eye Tracker",
+    "Motion Sickness", "Postural Instability", "Cognitive Load", "Working Memory", "Eye Tracker",
     "EEG", "Heart rate monitor", "BCI", "brain-computer interface", "motion tracker", "HRV", "Skin Conductance",
     "pupil dilatation", "attention", "position", "wearable sensor", "sensor", "wearable device", "electroencephalogra",
     "heart", "gaze", "neuro", "fatigue", "discomfort"
